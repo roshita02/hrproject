@@ -11,10 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+// $router->group([], function () use ($router)
+// {
+//     require(__DIR__ . "/Frontend/frontend.php");
+// });
+Route::get('/admin','Auth\LoginController@showLoginForm')->name('login');
+Route::get('logout', 'Auth\LoginController@logout');
 Auth::routes();
-
+//Route::get('/register','HomeController@register');
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//for dashboard
+Route::get('admin/dashboard', 'DashboardController@index')->name('dashboard');
