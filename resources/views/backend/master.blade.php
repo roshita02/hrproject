@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html class="">
+<html class="chrome">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>HR System</title>
+    <title>HR System | @yield('title')</title>
     <!-- Favicon-->
         @include('backend.style')
+        <style type="text/css">
+            .form-inline{
+                display: inline-block;
+            }
+
+        </style>
 
 </head>
 
@@ -27,15 +34,10 @@
             <p>Please wait...</p>
         </div>
     </div>
+
     <!-- #END# Page Loader -->
-    
-    @include('backend.leftsidebar')
-  <section class="content">
-        <div class="container-fluid">
     @yield('text')
-        </div>   
-    </section>
+        
     @include('backend.script')    
 </body>
-
 </html>

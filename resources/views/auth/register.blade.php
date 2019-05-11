@@ -8,6 +8,15 @@
         </div>
         <div class="card">
             <div class="body">
+                @if($errors->any())
+        <div class="row collapse">
+            <ul class="alert-box warning radius">
+                @foreach($errors->all() as $error)
+                    <li> {{ $error }} </li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
                     <form id="sign_up" method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                         @csrf
                 <div class="msg">Register a new membership</div>
@@ -16,7 +25,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="namesurname" placeholder="Name Surname" required autofocus>
+                            <input type="text" class="form-control" name="name" placeholder="Name Surname" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -40,7 +49,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>
+                            <input type="password" class="form-control" name="password_confirmation" minlength="6" placeholder="Confirm Password" required>
                         </div>
                     </div>
                     <div class="form-group">

@@ -10,6 +10,14 @@ $(document).ready(function() {
           $(this).parents(".control-group").remove();
       });
 
+      // delete button
+    $(document).on('click', 'a.submit', function(){    
+      if (confirm('Are you sure want to delete!!')) 
+        {      
+          $(this).closest('form').submit();    
+        }  
+      });
+
     });
 
 //To display image

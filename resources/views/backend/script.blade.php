@@ -1,7 +1,8 @@
 <!-- Jquery Core Js -->
     <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <script src="{{asset('plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
+    <!-- <script src="{{asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script> -->
     <script src="{{asset('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
      <script src="{{asset('plugins/jquery-datatable/extensions/export/jszip.min.js')}}"></script>
     <script src="{{asset('plugins/jquery-datatable/extensions/export/pdfmake.min.js')}}"></script>
@@ -10,7 +11,6 @@
     <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
 
     <!-- Custom Js -->
-    <script src="{{asset('js/admin.js')}}"></script>
     <script src="{{asset('js/pages/tables/jquery-datatable.js')}}"></script>
 
     <!-- Bootstrap Core Js -->
@@ -48,7 +48,8 @@
 
     <!-- Morris Plugin Js -->
     <script src="{{asset('plugins/raphael/raphael.min.js')}}"></script>
-    <!-- <script src="{{asset('plugins/morrisjs/morris.js')}}"></script> -->
+
+    <script src="{{asset('plugins/morrisjs/morris.js')}}"></script>
 
     <!-- ChartJs -->
     <script src="{{asset('plugins/chartjs/Chart.bundle.js')}}"></script>
@@ -71,9 +72,14 @@
     <script src="{{asset('plugins/jquery-sparkline/jquery.sparkline.js')}}"></script>
 
     <!-- Custom Js -->
-    <script src="{{asset('js/admin.js')}}"></script>
     <script src="{{asset('js/pages/index.js')}}"></script>
     <script src="{{asset('js/pages/forms/editors.js')}}"></script>
+    <script src="{{asset('js/pages/examples/sign-in.js')}}"></script>
+    <script src="{{asset('js/pages/examples/forgot-password.js')}}"></script>
+    <script src="{{asset('js/pages/examples/sign-up.js')}}"></script>
+    <script src="{{asset('js/pages/ui/notifications.js')}}"></script>
+
+    <script src="{{asset('js/admin.js')}}"></script>
 
     <!-- Demo Js -->
     <script src="{{asset('js/demo.js')}}"></script>

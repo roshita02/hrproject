@@ -1,9 +1,4 @@
-<!-- Overlay For Sidebars -->
-    <div class="overlay"></div>
-    <!-- #END# Overlay For Sidebars -->
-        @include('backend.header')
-
-    <section>
+<section>
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
@@ -19,11 +14,7 @@
                         <ul class="dropdown-menu pull-right">
                             <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
+                            <li><a href="{{URL::to('/logout')}}"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -34,27 +25,88 @@
                 <ul class="list">
                     <li class="header">BACKEND SIDEBAR</li>
                     <li class="">
-                        <a href="index.html">
+                        <a href="{{URL::to('/admin/dashboard')}}">
                             <i class="material-icons">view_list</i>
-                            <span>Menu</span>
+                            <span>Dashboard</span>
                         </a>
+                    </li>
+                     <li class="">
+                        <a href="javascript:;" class="menu-toggle waves-effect waves-block">
+                            <i class="material-icons">assignment</i>
+                            <span>Employee Management</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{{URL::to('/employee')}}" class="waves-effect waves-block"><span>Employee</span></a>
+                            </li>
+                            <li>
+                                <a href="{{URL::to('/designation')}}" class="waves-effect waves-block"><span>Designation</span></a>
+                            </li>
+                            <li>
+                                <a href="{{ URL::to('/department') }}" class="waves-effect waves-block"><span>Department</span></a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="">
                         <a href="">
                             <i class="material-icons">perm_media</i>
-                            <span>Slider</span>
+                            <span>Attendance</span>
                         </a>
                     </li>
                     <li class="">
                         <a href="index.html">
                             <i class="material-icons">content_copy</i>
-                            <span>Page</span>
+                            <span>Holiday</span>
                         </a>
+                    </li>
+                    <li class="">
+                        <a href="index.html">
+                            <i class="material-icons">content_copy</i>
+                            <span>Leave</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="index.html">
+                            <i class="material-icons">content_copy</i>
+                            <span>Payroll</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="index.html">
+                            <i class="material-icons">content_copy</i>
+                            <span>Task</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="index.html">
+                            <i class="material-icons">content_copy</i>
+                            <span>Message</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="index.html">
+                            <i class="material-icons">content_copy</i>
+                            <span>Job Application</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;" class="menu-toggle waves-effect waves-block">
+                            <i class="material-icons">assignment</i>
+                            <span>User Management</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{{URL::to('/users')}}" class="waves-effect waves-block"><span>Users</span></a>
+                            </li>
+                            <li>
+                                <a href="{{ URL::to('/roles') }}" class="waves-effect waves-block"><span>Roles</span></a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
             <!-- #Menu -->
-                @include('backend.footer')
+    @include('backend.footer')
 
         </aside>
         <!-- #END# Left Sidebar -->

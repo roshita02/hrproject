@@ -27,4 +27,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 //for dashboard
-Route::get('admin/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::resource('users', 'UserController');
+    Route::resource('roles', 'RoleController');
+    Route::resource('designation', 'DesignationController');
+    Route::resource('department', 'DepartmentController');
+    Route::resource('employee', 'EmployeeController');

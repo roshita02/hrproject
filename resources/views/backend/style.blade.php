@@ -37,13 +37,15 @@
     <!-- Morris Chart Css-->
     <link href="{{asset('plugins/morrisjs/morris.css')}}" rel="stylesheet" />
 
+    <link href="{{asset('css/materialize.css')}}" rel="stylesheet" />
+
     <!-- Custom Css -->
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{asset('css/themes/all-themes.css')}}" rel="stylesheet" />
 
     <!-- Create blade ko image Css -->
-    <link href="{{asset('css/jasny-bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/jasny-bootstrap.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
     
