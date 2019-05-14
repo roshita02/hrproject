@@ -9,14 +9,14 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                             <h2><strong>{!! trans('messages.add_new') !!}</strong> {!! trans('messages.designation') !!}
+                             <h2><strong>{!! trans('messages.add_new') !!}</strong> {!! trans('messages.leave_type') !!}
 				</h2>
                         </div>
                         <div class="body">
 
           
-					{!! Form::open(['route' => 'designation.store','role' => 'form', 'class'=>'designation-form','id' => 'designation-form','data-form-table' => 'designation_table']) !!}
-						@include('designation._form')
+					{!! Form::open(['route' => 'leavetype.store','role' => 'form', 'class'=>'leavetype-form','id' => 'leavetype-form','data-form-table' => 'leavetype_table']) !!}
+						@include('leave_type._form')
 					{!! Form::close() !!}
 					</div>
                 </div>
@@ -27,7 +27,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Designation List
+                                Leave type List
                             </h2>
                         </div>
                         <div class="body">
@@ -36,32 +36,28 @@
                                     <thead>
                                         <tr>
                                             <th>Action</th>
-                                            <th>Designation</th>
-                                            <th>Department</th>
-                                            <th>Top Designation</th>
+                                            <th>Name</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Action</th>
-                                            <th>Designation</th>
-                                            <th>Department</th>
-                                            <th>Top Designation</th>
+                                            <th>Name</th>
+                                           
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    	@foreach($designations as $key => $designation)
+                                    	@foreach($leave_types as $key => $type)
                                     	
                                     	<tr>
-                                    		<td><a href="{{ route('designation.edit', $designation->id) }}" class="action-btns">
+                                    		<td><a href="{{ route('leavetype.edit', $type->id) }}" class="action-btns">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a> 
-                 {{Form::open(['route'=>['designation.destroy', $designation->id] , 'method'=>'DELETE', 'class'=>'form-inline' ])}}   
+                 {{Form::open(['route'=>['leavetype.destroy', $type->id] , 'method'=>'DELETE', 'class'=>'form-inline' ])}}   
                     <a href="javascript:;" class="action-btns submit"><span class="glyphicon glyphicon-trash"></span></a>
                  {{Form::close()}}      </td>
-                                    		<td>{{ $designation->name}}</td>
-                                    		<td>@if(!empty($designation->department->name)){{$designation->department->name}} @endif</td>
-                                    		<td>{{ $designation->top_designation_id}}</td>
+                                    		<td>{{ $type->name}}</td>
                                     	</tr>
                                     	@endforeach
                                     </tbody>

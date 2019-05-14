@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Entrust;
-use App\Models\LeaveType;
-use App\Models\Leave;
-use Auth;
 
-class LeaveController extends Controller
+class LeaveStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +14,6 @@ class LeaveController extends Controller
     public function index()
     {
         //
-        $leavetypes = LeaveType::pluck('name','id');
-        $leaves = Leave::get();
-        return view('leave.index',compact('leaves','leavetypes'));
     }
 
     /**
@@ -39,21 +32,9 @@ class LeaveController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Leave $leave)
+    public function store(Request $request)
     {
         //
-        $this->validate($request,[
-            'leave_type_id' => 'required',
-            'status' => 'required',
-            'from_date' => 'required',
-            'to_date' => 'required',
-            //'approved_date' => 'required',
-        ]);
-        //dd($request->all());
-        $request->request->add(['user_id'=>Auth::user()->id]);
-        $leave->fill($request->all());
-        $leave->save();
-        return redirect()->route('leave.index')->withSuccess(trans('messages.leave').' '.trans('messages.created'));
     }
 
     /**
@@ -76,9 +57,6 @@ class LeaveController extends Controller
     public function edit($id)
     {
         //
-        $leave = Leave::findOrFail($id);
-        $leavetypes = LeaveType::pluck('name','id');
-        return view('leave.edit',compact('leave','leavetypes'));
     }
 
     /**

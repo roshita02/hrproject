@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Entrust;
 use App\Models\LeaveType;
-use App\Models\Leave;
-use Auth;
+use Entrust;
 
-class LeaveController extends Controller
+class LeaveTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +16,8 @@ class LeaveController extends Controller
     public function index()
     {
         //
-        $leavetypes = LeaveType::pluck('name','id');
-        $leaves = Leave::get();
-        return view('leave.index',compact('leaves','leavetypes'));
+        $leave_types = LeaveType::get();
+        return view('leave_type.index',compact('leave_types'));
     }
 
     /**
@@ -39,21 +36,17 @@ class LeaveController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Leave $leave)
+    public function store(Request $request, LeaveType $leavetype)
     {
         //
         $this->validate($request,[
-            'leave_type_id' => 'required',
-            'status' => 'required',
-            'from_date' => 'required',
-            'to_date' => 'required',
-            //'approved_date' => 'required',
+            'name' => 'required'
         ]);
-        //dd($request->all());
-        $request->request->add(['user_id'=>Auth::user()->id]);
-        $leave->fill($request->all());
-        $leave->save();
-        return redirect()->route('leave.index')->withSuccess(trans('messages.leave').' '.trans('messages.created'));
+
+        $leavetype = new LeaveType();
+        $leavetype->name = $request->name;
+        $leavetype->save();
+        return redirect()->route('leavetype.index')->withSuccess(trans('messages.leave_type').' '.trans('messages.updated'));
     }
 
     /**
@@ -76,9 +69,8 @@ class LeaveController extends Controller
     public function edit($id)
     {
         //
-        $leave = Leave::findOrFail($id);
-        $leavetypes = LeaveType::pluck('name','id');
-        return view('leave.edit',compact('leave','leavetypes'));
+        $leave_type = LeaveType::findOrFail($id);
+        return view('leave_type.edit',compact('leave_type'));
     }
 
     /**
@@ -91,6 +83,16 @@ class LeaveController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'name' => 'required'
+        ]);
+
+       $leavetype = LeaveType::findOrFail($id);
+        // Update leave type
+        $leavetype->fill($request->all());
+
+        $leavetype->save();
+        return redirect()->route('leavetype.index')->withSuccess(trans('messages.leave_type').' '.trans('messages.updated'));
     }
 
     /**
@@ -102,5 +104,8 @@ class LeaveController extends Controller
     public function destroy($id)
     {
         //
+        $leavetype = LeaveType::findOrFail($id);
+        $leavetype->delete();
+        return redirect()->route('leavetype.index')->withSuccess(trans('messages.leave_type').' '.trans('messages.deleted'));
     }
 }

@@ -6,19 +6,20 @@
 <section class="content">
         <div class="container-fluid">
             <div class="row clearfix">
-
-            	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h4 class="modal-title">{!! trans('messages.edit').' '.trans('messages.designation') !!}</h4>
-	</div>
-	<div class="modal-body">
-		{!! Form::model($designation,['method' => 'PATCH','route' => ['designation.update',$designation] ,'class' => 'designation-form','id' => 'designation-form-edit','data-form-table' => 'designation_table']) !!}
-			@include('designation._form', ['buttonText' => trans('messages.update')])
+            	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                     <h4 class="modal-title">{!! trans('messages.edit').' '.trans('messages.leave_type') !!}</h4>
+                        </div>
+                        <div class="body">
+                        	{!! Form::model($leave_type,['method' => 'PATCH','route' => ['leavetype.update',$leave_type] ,'class' => 'leavetype-form','id' => 'leavetype-form-edit','data-form-table' => 'leavetype_table']) !!}
+			@include('leave_type._form', ['buttonText' => trans('messages.update')])
 		{!! Form::close() !!}
-		<div class="clear"></div>
-	</div>
-	<div class="modal-footer">
-	</div>
+                        </div>
+                    </div>
+                </div>
+
+	
 </div>
 </div>
     </section>

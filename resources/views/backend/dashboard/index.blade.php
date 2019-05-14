@@ -57,7 +57,7 @@
                             <i class="material-icons">person_add</i>
                         </div>
                         <div class="content">
-                            <div class="text">NEW VISITORS</div>
+                            <div class="text">NEW EMPLOYEES</div>
                             <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -75,6 +75,7 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <button class="btn btn-primary btn-success" type="submit">Clock In</button>
                             </form>
+                            @if(!empty($time))
                             <div>Clock Out <span>{{ $timeout }}</span></div>
                             <form action="{{ URL::to('attandance/clockout') }}" method="post">
                                 @if(!empty($clockin))
@@ -83,6 +84,7 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <button class="btn btn-primary btn-success" type="submit">Clock Out</button>
                             </form>
+                            @endif
                         </div>
                     </div>
                 </div>

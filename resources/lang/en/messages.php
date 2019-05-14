@@ -1,5 +1,8 @@
 <?php return array (
   
+  'leave_from_date' => 'Leave From Date',
+  'leave_to_date' => 'Leave To Date',
+  'approved_date' => 'Approved Date',
   'absent' => 'Absent',
   'account' => 'Account',
   'account_expired' => 'Account Expired',

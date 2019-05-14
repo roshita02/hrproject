@@ -16,7 +16,7 @@
                         <div class="body">
 
          
-					{!! Form::open(['route' => 'leave.store','role' => 'form', 'class'=>'leave-form','id' => 'leave-form','data-form-table' => 'department_table']) !!}
+					{!! Form::open(['route' => 'leave.store','role' => 'form', 'class'=>'leave-form','id' => 'leave-form','data-form-table' => 'leave_table']) !!}
 						@include('leave._form')
 					{!! Form::close() !!}
 					</div>
@@ -58,21 +58,21 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    	@foreach($departments as $key => $department)
+                                    	@foreach($leaves as $key => $leave)
                                     	<tr>
                                     		<td>
-                                          <a href="{{ route('department.edit', $department->id) }}" class="action-btns">
+                                          <a href="{{ route('leave.edit', $leave->id) }}" class="action-btns">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a> 
-                 {{Form::open(['route'=>['department.destroy', $department->id] , 'method'=>'DELETE', 'class'=>'form-inline' ])}}   
+                 {{Form::open(['route'=>['leave.destroy', $leave->id] , 'method'=>'DELETE', 'class'=>'form-inline' ])}}   
                     <a href="javascript:;" class="action-btns submit"><span class="glyphicon glyphicon-trash"></span></a>
                  {{Form::close()}}      
                                             </td>
-                                    		<td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                    		<td></td>
+                                    		<td>{{ $leave->leaveType->name }}</td>
+                                            <td>{{ $leave->from_date }}</td>
+                                            <td>{{ $leave->to_date }}</td>
+                                            <td>{{ $leave->status }}</td>
+                                    		<td>{{ $leave->approved_date }}</td>
                                    
                                     	</tr>
                                     	@endforeach

@@ -16,7 +16,7 @@
                     <div class="body">
 
          
-					{!! Form::model($department,['method' => 'PATCH','route' => ['department.update',$department] ,'class' => 'department-form','id' => 'department-form-edit','data-form-table' => 'department_table']) !!}
+					{!! Form::model($leave,['method' => 'PATCH','route' => ['department.update',$leave] ,'class' => 'department-form','id' => 'department-form-edit','data-form-table' => 'department_table']) !!}
 						@include('department._form', ['buttonText' => trans('messages.update')])
 					{!! Form::close() !!}
 					</div>
