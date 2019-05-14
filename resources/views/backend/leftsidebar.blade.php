@@ -25,7 +25,7 @@
                 <ul class="list">
                     <li class="header">BACKEND SIDEBAR</li>
                     <li class="">
-                        <a href="{{URL::to('/admin/dashboard')}}">
+                        <a href="{{URL::to('/dashboard')}}">
                             <i class="material-icons">view_list</i>
                             <span>Dashboard</span>
                         </a>
@@ -54,17 +54,35 @@
                         </a>
                     </li>
                     <li class="">
-                        <a href="index.html">
+                        <a href="{{ URL::to('/admin/holiday') }}">
                             <i class="material-icons">content_copy</i>
                             <span>Holiday</span>
                         </a>
                     </li>
                     <li class="">
-                        <a href="index.html">
+                        <a href="{{URL::to('/admin/message')}}">
                             <i class="material-icons">content_copy</i>
-                            <span>Leave</span>
+                            <span>Message</span>
                         </a>
                     </li>
+                    <li class="">
+                        <a href="javascript:;" class="menu-toggle waves-effect waves-block">
+                            <i class="material-icons">assignment</i>
+                            <span>Leave Management</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{{URL::to('/leave')}}" class="waves-effect waves-block"><span>Leave</span></a>
+                            </li>
+                            <li>
+                                <a href="{{URL::to('/leavetype')}}" class="waves-effect waves-block"><span>Leave Type</span></a>
+                            </li>
+                            <li>
+                                <a href="{{ URL::to('/leavestatus') }}" class="waves-effect waves-block"><span>Leave Status</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    
                     <li class="">
                         <a href="index.html">
                             <i class="material-icons">content_copy</i>

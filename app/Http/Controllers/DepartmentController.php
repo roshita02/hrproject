@@ -16,6 +16,9 @@ class DepartmentController extends Controller
     public function index()
     {
         //
+        if(!Entrust::can('view_departments')){
+            return redirect('dashboard')->withErrors(trans('messages.permission_denied'));
+        }
         $departments = Department::get();
         return view('backend.employee.department.index',compact('departments'))->withClass('department');
     }
@@ -64,6 +67,9 @@ class DepartmentController extends Controller
     public function edit(Department $department)
     {
         //
+         if(!Entrust::can('edit_departments')){
+            return redirect('dashboard')->withErrors(trans('messages.permission_denied'));
+        }
         return view('department.edit',compact('department'))->withClass('edit-department');
     }
 
@@ -91,6 +97,9 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         //
+         if(!Entrust::can('delete_departments')){
+            return redirect('dashboard')->withErrors(trans('messages.permission_denied'));
+        }
         $department->delete();
          return redirect('department')->withSuccess(trans('messages.department').' '.trans('messages.deleted'));
     }

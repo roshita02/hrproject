@@ -18,6 +18,9 @@ class DesignationController extends Controller
     public function index()
     {
         //
+         if(!Entrust::can('view_designations')){
+            return redirect('dashboard')->withErrors(trans('messages.permission_denied'));
+        }
         $departments = Department::all()->pluck('name','id')->all();
         $designations = Designation::all();
         return view('backend.employee.designation.index',compact('departments','designations'))->withClass('designation');
@@ -81,6 +84,9 @@ class DesignationController extends Controller
     public function edit(Designation $designation)
     {
         //
+         if(!Entrust::can('edit_designations')){
+            return redirect('dashboard')->withErrors(trans('messages.permission_denied'));
+        }
         $departments = \App\Department::all()->pluck('name','id')->all();
         return view('backend.employee.designation.edit',compact('designation','departments'));
 
@@ -121,7 +127,9 @@ class DesignationController extends Controller
     {
         //
         $user_check = User::where('designation_id',$designation->id)->first();
-
+         if(!Entrust::can('delete_designations')){
+            return redirect('dashboard')->withErrors(trans('messages.permission_denied'));
+        }
         $designation->delete();
          return redirect('designation')->withSuccess(trans('messages.designation').' '.trans('messages.deleted'));
     }

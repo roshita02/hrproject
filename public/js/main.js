@@ -18,6 +18,8 @@ $(document).ready(function() {
         }  
       });
 
+    $('#calendar').fullCalendar({});
+
     });
 
 //To display image

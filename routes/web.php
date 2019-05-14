@@ -33,3 +33,13 @@ Route::resource('users', 'UserController');
     Route::resource('designation', 'DesignationController');
     Route::resource('department', 'DepartmentController');
     Route::resource('employee', 'EmployeeController');
+    Route::resource('leave', 'LeaveController');
+    Route::resource('leavetype', 'LeaveTypeController');
+    Route::resource('leavestatus', 'LeaveStatusController');
+    Route::post('attandance/clockin', 'AttandanceController@clockIn');
+    Route::post('attandance/clockout', 'AttandanceController@clockOut');
+    //Holiday
+Route::resource('admin/holiday', 'HolidayController');
+
+//Message
+Route::resource('admin/message', 'MessageController');

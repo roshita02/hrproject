@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Attandance;
+use Auth; 
+use Carbon\Carbon;
 class DashboardController extends Controller
 {
     public function __construct()
@@ -17,8 +19,12 @@ class DashboardController extends Controller
      */
      public function index()
     {
+        $attandance = Attandance::where('user_id',Auth::user()->id)->where('date',Carbon::now()->toDateString())->first();
+        $time = $attandance->clock_in;
+        $timeout = $attandance->clock_out;
+        $clockin = $attandance->id;
                        
-        return view('backend.dashboard.index' );
+        return view('backend.dashboard.index',compact('time','timeout','clockin') );
         
     }
 

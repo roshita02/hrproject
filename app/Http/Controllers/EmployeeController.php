@@ -18,6 +18,9 @@ class EmployeeController extends Controller
     public function index()
     {
         //
+        if(!Entrust::can('view_employees')){
+            return redirect('dashboard')->withErrors(trans('messages.permission_denied'));
+        }
         $employees = Profile::get(); 
         return view('employee.index',compact('employees'));
     }
@@ -30,6 +33,9 @@ class EmployeeController extends Controller
     public function create()
     {
         //
+        if(!Entrust::can('create_employees')){
+            return redirect('dashboard')->withErrors(trans('messages.permission_denied'));
+        }
         return view('employee.new',compact(''));
     }
 
@@ -84,6 +90,9 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         //
+        if(!Entrust::can('edit_employees')){
+            return redirect('dashboard')->withErrors(trans('messages.permission_denied'));
+        }
         $employee = Profile::findOrFail($id);
         return view('employee.edit',compact('employee'))->withClass('emploee-edit');
 
@@ -112,8 +121,13 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Profile $employee)
     {
         //
+        if(!Entrust::can('delete_employees')){
+            return redirect('dashboard')->withErrors(trans('messages.permission_denied'));
+        }
+        $employee->delete();
+         return redirect('employee')->withSuccess(trans('messages.designation').' '.trans('messages.deleted'));
     }
 }

@@ -1,6 +1,10 @@
 <!-- Jquery Core Js -->
     <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
     <script src="{{asset('plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
     <!-- <script src="{{asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script> -->
     <script src="{{asset('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
@@ -57,6 +61,9 @@
 
     <!-- TinyMCE -->
     <script src="{{asset('plugins/tinymce/tinymce.js')}}"></script>
+
+    <!--JQuery-Validation-->
+    <script src="{{asset('plugins/jquery-validation/jquery.validate.js')}}"></script>
 
     <!-- Ckeditor -->
     <!-- <script src="{{asset('plugins/ckeditor/ckeditor.js')}}"></script> -->
