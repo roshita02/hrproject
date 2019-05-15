@@ -20,7 +20,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            {!! Form::open(['route' => ['employee.store']], ['files' =>true] ) !!}
+            {!! Form::open(['files' =>true, 'route' => ['employee.store']] ) !!}
                 @include('employee._form')
                 <!-- Submit Form Button -->
                 {!! Form::submit('Create', ['class' => 'btn btn-primary']) !!}

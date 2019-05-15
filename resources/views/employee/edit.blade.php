@@ -31,7 +31,7 @@
                     @endif
                 <div class="ibox float-e-margins">
                     <div class="ibox-content">
-                        {!! Form::model($employee, ['method' => 'PUT', 'route' => ['employee.update',  $employee->id ] ]) !!}
+                        {!! Form::model($employee, ['method' => 'PUT','files' => true, 'route' => ['employee.update',  $employee->id ] ]) !!}
                             @include('employee._formedit')
                             <!-- Submit Form Button -->
                             {!! Form::submit('Save Changes', ['class' => 'btn btn-primary']) !!}

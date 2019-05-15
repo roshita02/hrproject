@@ -7,6 +7,7 @@ use App\User;
 use App\Models\Profile;
 use Entrust;
 use App\Models\Designation;
+use Mail;
 
 class EmployeeController extends Controller
 {
@@ -33,7 +34,7 @@ class EmployeeController extends Controller
     public function create()
     {
         //
-        if(!Entrust::can('create_employees')){
+        if(!Entrust::can('add_employees')){
             return redirect('dashboard')->withErrors(trans('messages.permission_denied'));
         }
         return view('employee.new',compact(''));
@@ -57,16 +58,43 @@ class EmployeeController extends Controller
         'contact_no' => 'required'
     ]);
     //dd($request->all());
+        //dd($request->all());
     $owner = new User();
     $owner->name         = $request->name;
     $owner->email = $request->email; 
     $owner->password  = bcrypt($request->password); 
     $owner->save();
-
     $request->request->add(['user_id' => $owner->id]); //add request
+    if($request->hasfile('image')){
+        $file1 = $request->file('image');
+                $destinationPath1 = public_path(). '/images/user/';
+                $filename1 = $file1->getClientOriginalName();
+                $file1->move($destinationPath1, str_replace(' ', '-', strtolower(  $filename1 ) ));
+    //$request->request->add(['image' => $filename1]);
+    }
+    Profile::create([
+            'employee_code' => $request->employee_code,
+            'gender' => $request->gender,
+            'marital_status' => $request->marital_status,
+            'dob' => $request->marital_status,
+            'date_of_joining' => $request->date_of_joining,
+            'date_of_leaving' => $request->date_of_leaving,
+            'date_of_retirement' => $request->date_of_retirement,
+            'contact_no' => $request->contact_no,
+            'image' => $filename1,
+            'facebook_link' => $request->facebook_link,
+            'twitter_link' => $request->twitter_link,
+            'linkedin_link' => $request->linkedin_link,
+            'googleplus_link' => $request->googleplus_link,
+        ]);
+    $email = $request->email;
+    Mail::send('email_template.email', ['email' => $request->email, 'password' => $request->password,'name' => $request->name ], function ($m) use ($email) 
+        {
+            $m->from( 'neha.kd4866@gmail.com' , 'Login Detail Info');
 
-    Profile::create($request->except('name', 'email','password'));
+            $m->to( $email )->subject('Login Detail Info');
 
+        });
     return redirect()->route('employee.index');
     }
 
@@ -105,12 +133,35 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $employee)
+    public function update(Request $request, $id)
     {
         //
-        $data = $request->except('photo');
-         $employee->fill($data)->save();
-         $employee->save();
+        if($request->hasfile('image')){
+                $file1 = $request->file('image');
+                $destinationPath1 = public_path(). '/images/user/';
+                $filename1 = $file1->getClientOriginalName();
+                $file1->move($destinationPath1, str_replace(' ', '-', strtolower(  $filename1 ) ));
+                //$request->request->add(['image' => str_replace(' ','-',$filename1)]);
+        }else{
+            $filename = Profile::findOrFail($id);
+            $filename1 = $filename->image;
+        }
+         Profile::where('id',$id)->update([
+            'employee_code' => $request->employee_code,
+            'gender' => $request->gender,
+            'marital_status' => $request->marital_status,
+            'dob' => $request->marital_status,
+            'date_of_joining' => $request->date_of_joining,
+            'date_of_leaving' => $request->date_of_leaving,
+            'date_of_retirement' => $request->date_of_retirement,
+            'contact_no' => $request->contact_no,
+            'image' => $filename1,
+            'facebook_link' => $request->facebook_link,
+            'twitter_link' => $request->twitter_link,
+            'linkedin_link' => $request->linkedin_link,
+            'googleplus_link' => $request->googleplus_link,
+         ]);
+         //$employee->save();
 
         return redirect('/employee')->withSuccess(trans('messages.employee').' '.trans('messages.updated'));
     }
@@ -127,7 +178,19 @@ class EmployeeController extends Controller
         if(!Entrust::can('delete_employees')){
             return redirect('dashboard')->withErrors(trans('messages.permission_denied'));
         }
+        $userid = $employee->user_id;
         $employee->delete();
+        $user = User::find($id);
+        $email = $user->email;
+        $user->delete();
+        $body = 'Sorry, you have been removed from our company!';
+          Mail::send('email_template.all', ['name' => $user->name, 'body' => $body ], function ($m) use ($email) 
+        {
+            $m->from( 'neha.kd4866@gmail.com' , 'Login Detail Info');
+
+            $m->to( $email )->subject('Login Detail Info');
+
+        });
          return redirect('employee')->withSuccess(trans('messages.designation').' '.trans('messages.deleted'));
     }
 }

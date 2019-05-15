@@ -49,7 +49,6 @@ class LeaveController extends Controller
             'to_date' => 'required',
             //'approved_date' => 'required',
         ]);
-        //dd($request->all());
         $request->request->add(['user_id'=>Auth::user()->id]);
         $leave->fill($request->all());
         $leave->save();
@@ -91,6 +90,26 @@ class LeaveController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'leave_type_id' => 'required',
+            'status' => 'required',
+            'from_date' => 'required',
+            'to_date' => 'required',
+            //'approved_date' => 'required',
+        ]);
+
+        Leave::where('id',$id)->where('user_id',Auth::user()->id)->update([
+            'leave_type_id' => $request->leave_type_id,
+            'from_date' => $request->from_date,
+            'to_date' => $request->to_date,
+            'description' => $request->description,
+            'status' => $request->status,
+            'remarks' => $request->remarks,
+            'approved_date' => $request->approved_date,
+            'admin_remarks' => $request->admin_remarks
+        ]);
+
+        return rediect()->route('leave.index')->withSuccess(trans('messages.leave').' '.trans('messages.edit'));
     }
 
     /**
@@ -102,5 +121,10 @@ class LeaveController extends Controller
     public function destroy($id)
     {
         //
+        $leave = Leave::findOrFail($id);
+        if($leave){
+            $leave->delete();
+        }
+        return rediect()->route('leave.index')->withSuccess(trans('messages.leave').' '.trans('messages.delete'));
     }
 }

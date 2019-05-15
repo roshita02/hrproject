@@ -117,7 +117,7 @@ private function syncPermissions(Request $request, $user)
     $roles = Role::find($roles);
 
     // check for current role changes
-    if( ! $user->hasAllRoles( $roles ) ) {
+    if( ! $user->hasRole( $roles ) ) {
         // reset all direct permissions for user
         $user->permissions()->sync([]);
     } else {

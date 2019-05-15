@@ -4,11 +4,18 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
+                    <?php 
+                    $photo = App\Models\Profile::where('user_id',Auth::user()->id)->select('image')->first();
+                    ?>
+                    @if(!empty($photo->image))
+                <img src="{{asset('/images/user/'.$photo->image)}}" width="48" height="48" alt="User" />
+                @else
                 <img src="{{asset('/images/neha1.jpg')}}" width="48" height="48" alt="User" />
+                @endif
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Neha Khadka</div>
-                    <div class="email">neha.kd4866@gmail.com</div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</div>
+                    <div class="email">{{ Auth::user()->email }}</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
@@ -39,12 +46,14 @@
                             <li>
                                 <a href="{{URL::to('/employee')}}" class="waves-effect waves-block"><span>Employee</span></a>
                             </li>
+                            @if(Auth::user()->hasRole('admin'))
                             <li>
                                 <a href="{{URL::to('/designation')}}" class="waves-effect waves-block"><span>Designation</span></a>
                             </li>
                             <li>
                                 <a href="{{ URL::to('/department') }}" class="waves-effect waves-block"><span>Department</span></a>
                             </li>
+                            @endif
                         </ul>
                     </li>
                     <li class="">
@@ -74,21 +83,25 @@
                             <li>
                                 <a href="{{URL::to('/leave')}}" class="waves-effect waves-block"><span>Leave</span></a>
                             </li>
+                            @if(Auth::user()->hasRole('admin'))
                             <li>
                                 <a href="{{URL::to('/leavetype')}}" class="waves-effect waves-block"><span>Leave Type</span></a>
                             </li>
-                            <li>
+                            @endif
+                            {{-- <li>
                                 <a href="{{ URL::to('/leavestatus') }}" class="waves-effect waves-block"><span>Leave Status</span></a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
-                    
+                    @if(Auth::user()->hasRole('admin'))
+
                     <li class="">
                         <a href="index.html">
                             <i class="material-icons">content_copy</i>
                             <span>Payroll</span>
                         </a>
                     </li>
+                    @endif
                     <li class="">
                         <a href="index.html">
                             <i class="material-icons">content_copy</i>
@@ -113,9 +126,9 @@
                             <span>User Management</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
+                            {{-- <li>
                                 <a href="{{URL::to('/users')}}" class="waves-effect waves-block"><span>Users</span></a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="{{ URL::to('/roles') }}" class="waves-effect waves-block"><span>Roles</span></a>
                             </li>

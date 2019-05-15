@@ -49,7 +49,7 @@
 <!-- password Form Input -->
 <div class="form-group @if ($errors->has('photo')) has-error @endif">
     {!! Form::label('photo', 'Photo') !!}
-    {!! Form::file('photo',null, ['class' => 'form-control', 'placeholder' => 'Photo']) !!}
+    {!! Form::file('image',null, ['class' => 'form-control', 'placeholder' => 'Photo']) !!}
     @if ($errors->has('photo')) <p class="help-block">{{ $errors->first('photo') }}</p> @endif
 </div>
 <!-- password Form Input -->
