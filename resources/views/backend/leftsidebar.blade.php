@@ -120,6 +120,8 @@
                             <span>Job Application</span>
                         </a>
                     </li>
+                                                @if(Auth::user()->hasRole('admin'))
+
                     <li class="">
                         <a href="javascript:;" class="menu-toggle waves-effect waves-block">
                             <i class="material-icons">assignment</i>
@@ -134,6 +136,7 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                 </ul>
             </div>
             <!-- #Menu -->
